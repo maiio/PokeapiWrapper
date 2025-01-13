@@ -14,6 +14,6 @@ public class PokeapiwrapperApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PokeapiwrapperApplication.class, args);
-		log.info("Servicio iniciado correctamente Ene-2025!!");
+		log.info("Servicio iniciado correctamente!!");
 	}
 }
