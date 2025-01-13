@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: pokeapiwrapper
+  datasource:
+    url: jdbc:h2:file:./data/bankaya
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+pokeapi:
+  client:
+    url: https://pokeapi.co/api/v2
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework: INFO
+      apache:
+        cxf: INFO
+    com:
+      bankaya: INFO
+    springframework:
+      cloud:
+        openfeign: INFO
+    feign: INFO
+
+server:
+  servlet:
+    context-path: /
+
+cxf:
+  path: /

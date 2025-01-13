@@ -1,0 +1,55 @@
+apply plugin: 'jacoco'
+apply plugin: 'org.sonarqube'
+apply plugin: 'com.github.kt3k.coveralls'
+
+ext {
+	checkstyleExclusions = [
+ 	        '**/*Application.java',
+ 			'**/config/**',
+ 			'**/domain/*.java',
+ 			'**/model/**', 
+ 	]	
+	jacocoMinCoverageRates = [
+			'instruction': 90,
+			'branch' : 90,
+			'line' : 90,		
+			'complexity' : 90,		
+			'method' : 90,		
+			'class' : 90	
+	]
+	jacocoExclusions = [
+	     	'**/*Application.class',		
+	     	'**/config/**',		
+	     	'**/dto/*.class',		
+	     	'**/entities/**', 
+	] 
+	sonarExclusions = "**/config/*.java, **/*Application.java" 
+	sonarCoverageExclusions = "**/*Application.java,**/config/**,**/domain/*.java,**/model/**"
+}
+
+tasks.named("build") { 	
+	finalizedBy(jacocoTestReport) 
+}
+
+jacoco {
+    toolVersion = "0.8.10" 
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "pokeapiwrapper"
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.login", "squ_de80701d27a837e1aa2478e3d5e20ac60bdd6679"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+    }
+}
+
+tasks.jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
+}
+
