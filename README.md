@@ -28,7 +28,7 @@ docker build -t pokeapiwrapper-challenge .
 5.- Ejecutar con docker
 docker run -p 8080:8080 pokeapiwrapper-challenge
 
-6.- Con sual ui crear un proyecto con el wsdl http://localhost:8080/PokeapiWrapperSoapService?wsdl
+6.- Con soap ui crear un proyecto con el wsdl http://localhost:8080/PokeapiWrapperSoapService?wsdl
 
 7.- Probar los endpoints
 
